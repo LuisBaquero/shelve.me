@@ -7,6 +7,23 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+ <header>
+ <h1><%=link_to "Shelve.me", '/'%></h1>
+  <nav>
+  <%if user_signed_in?%>    
+	  <h1><%="#{current_user.username}"%></h1>
+	  <%=link_to "Logout", destroy_user_session_path %>
+	  <%=link_to "New book", new_book_path%>
+	  
+  <%else%>
+	  <%=link_to "Login",  new_user_session_path%>
+      <%=link_to "Register",  new_user_registration_path%>
+      <%=link_to "Search book", search_books_path%>
+  <%end%>
+  </nav>
+  </header>
+ <p class="notice"><%= flash[:notice] %></p>
+ <p class="alert"><%= flash[:alert] %></p>
 
 <%= yield %>
 

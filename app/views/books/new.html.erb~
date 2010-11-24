@@ -1,0 +1,19 @@
+<h1>Agregar Libros</h1>
+
+<% semantic_form_for @book do |f| %>  
+    <%=f.inputs%>
+   <%=f.buttons%>
+<% end %>  
+
+
+
+
+
+
+
+
+
+
+
+
+

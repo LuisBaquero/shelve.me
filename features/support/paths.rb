@@ -21,7 +21,19 @@ module NavigationHelpers
     when /la página de buscar libros/
       search_books_path
     when /la página del (\d+)to libro/
-      book_path($1)
+      "/books/#{($1)}"
+    when /la página del libro "([^"]*)" de "([^"]*)"/
+      "/books/#{Book.find_by_title_and_author($1, $2).id}"
+    when /la página de perfil de "([^"]*)"/
+      user_path(User.find_by_username($1))
+    when /la página de reseñas del libro "([^"]*)" de "([^"]*)"/
+      book_reviews_path(Book.find_by_title_and_author($1, $2))
+    when /la página de la reseña (\d+) de "([^"]*)" de "([^"]*)"/
+      id =  Book.find_by_title_and_author($2, $3).reviews.all[$1.to_i-1]
+      book_review_path(Book.find_by_title_and_author($2, $3), id)
+    when /la página de edición de la reseña (\d+) de "([^"]*)" de "([^"]*)"/
+      id =  Book.find_by_title_and_author($2, $3).reviews.all[$1.to_i-1]
+      edit_book_review_path(Book.find_by_title_and_author($2, $3), id)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -1,0 +1,7 @@
+<h1>Libros</h1>
+<ul>
+<%@books.each do |t|%>
+<li><%=link_to t.title, t%><%=t.title%> by <%=t.author%></li>
+<%=distance_of_time_in_words DateTime.now, t.created_at%>
+<%end%>
+</ul>
