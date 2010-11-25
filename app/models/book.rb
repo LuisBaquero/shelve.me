@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
   validates_uniqueness_of :title,:case_sensitive => false, :scope => :author, :message=> "Oops, we already know about that book, thanks anyway!"  
   has_many :reviews 
   has_and_belongs_to_many :users 
-  has_atached_file :cover
+  #has_atached_file :cover
   
   def validarAutor 
 	  if self.author.blank?
